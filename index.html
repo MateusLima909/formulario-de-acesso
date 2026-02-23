@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Acesso ao setor</title>
+</head>
+<body>
+
+    <div id="container-login">
+        <form>
+            <h2>Login</h2>
+            <hr class="hr-gradiente">
+            
+            <div class="input-group"> 
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu E-mail...">
+                <span class="msg-erro"></span>
+            </div>
+            
+            <div class="input-group"> 
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required>
+                <span class="msg-erro"></span>
+            </div>
+            
+            <button type="submit">Acessar</button>
+            <p>Não tem conta? <a href="#" id="ir-para-cadastro">Cadastre-se</a></p>
+        </form> 
+    </div>
+
+    <div id="container-cadastro" class="hidden">
+        <form>
+            <h2>Cadastro</h2>
+            <hr class="hr-gradiente">
+            
+            <div class="input-group"> 
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="text" name="nome" placeholder="Digite seu nome completo..">
+                <span class="msg-erro"></span>
+            </div>
+
+            <div class="input-group"> 
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu E-mail...">
+                <span class="msg-erro"></span>
+            </div>
+            
+            <div class="input-group"> 
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required>
+                <span class="msg-erro"></span>
+            </div>
+
+            <div class="input-group"> 
+                <label for="confirmaSenha">Confirmar Senha</label>
+                <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Digite sua senha novamente..." required>
+                <span class="msg-erro"></span>
+            </div>
+            
+            <button type="submit">Cadastrar</button>
+            <p>Já tem conta? <a href="#" id="ir-para-Login">Faça Login</a></p>
+        </form> 
+    </div>
+
+    <script>
+        // Evento de Envio
+        form.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            console.log("Tentei enviar, mas o js parou para validar!");
+            validarCamposLogin();
+        });
+
+        // Limpeza de erros em tempo real
+        document.getElementById('email').addEventListener('input', function() {
+            this.classList.remove('error');
+        });
+
+        document.getElementById('senha').addEventListener('input', function() {
+            this.classList.remove('error');
+        });
+
+        // Lógica de Validação
+        function validarCamposLogin() {
+            const erros = document.querySelectorAll('.error');
+            erros.forEach(el => el.classList.remove('error'));
+
+            const inputEmail = document.getElementById('email');
+            const inputSenha = document.getElementById('senha');
+
+            const emailValue = inputEmail.value.trim();
+            const senhaValue = inputSenha.value.trim();
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            let formularioValido = true;
+
+            // Validação de Email
+            if (emailValue == "") {
+                exibirErro(inputEmail, "O campo de e-mail não pode ser vazio.");
+                formularioValido = false;
+            } else if (!regex.test(emailValue)) {
+                exibirErro(inputEmail, "O e-mail tem que ser válido.");
+                formularioValido = false;
+            }
+
+            // Validação de Senha
+            if (senhaValue.length < 8) {
+                exibirErro(inputSenha, "A senha precisa ter no mínimo 8 caracteres.");
+                formularioValido = false;
+            }
+
+            if (formularioValido) {
+                alert("Login realizado com sucesso!");
+            }
+        }
+
+        // Função auxiliar de Erro
+        function exibirErro(input, mensagem) {
+            input.classList.add("error");
+            const spanInput = input.nextElementSibling;
+            spanInput.textContent = mensagem;
+        }
+    </script>
+</body>
+</html>
