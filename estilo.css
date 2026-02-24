@@ -18,6 +18,7 @@ body {
 
 p {
     padding: 20px;
+    text-align: center;
 }
 
 a {
@@ -27,10 +28,12 @@ a {
 /************************************/
 /*--- 2. ESTRUTURA DO FORMULÁRIO ---*/
 /************************************/
-#container-login, #container-cadastro {
+#container-login, 
+#container-cadastro {
     width: 100%;
     display: flex;
     justify-content: center;
+    animation: transicaoSuave 0.6s ease-out;
 }
 
 form {
@@ -80,7 +83,7 @@ button {
     border-radius: 10px;
     background: linear-gradient(100deg, transparent, transparent, #0060c7, transparent);
     background-size: 200% 100%;
-    animation: gradient-move 5s linear infinite;
+    animation: animacaoLinha 5s linear infinite;
 }
 
 /************************************/
@@ -117,11 +120,22 @@ button:hover {
 /************************************/
 /* --- 5. KEYFRAMES (ANIMAÇÕES) --- */
 /************************************/
-@keyframes gradient-move {
+@keyframes animacaoLinha {
     0% {
         background-position: 0% 0%;
     }
     100% {
         background-position: 200% 0%;
+    }
+}
+
+@keyframes transicaoSuave {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

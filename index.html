@@ -36,7 +36,9 @@
             
             <div class="input-group"> 
                 <label for="nome">Nome Completo</label>
-                <input type="text" id="nome-cadastro" name="nome-cadastro" placeholder="Digite seu nome completo..">
+                <input type="text" id="nome-cadastro" name="nome-cadastro" 
+                       oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" 
+                       placeholder="Digite seu nome completo..">
                 <span class="msg-erro"></span>
             </div>
 
@@ -66,58 +68,57 @@
     <script>
         const formLogin = document.getElementById('formLogin');
         const formCadastro = document.getElementById('formCadastro');
-        // Evento de Envio
+
+        // EVENTOS DE ENVIO
         formLogin.addEventListener('submit', function(evento) {
             evento.preventDefault();
-            console.log("Tentei enviar, mas o js parou para validar!");
             validarCamposLogin();
         });
 
-        const login = document.getElementById('ir-para-cadastro');
-        const cadastro = document.getElementById('ir-para-login'); 
-        
+        formCadastro.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            validarCamposCadastro();
+        });
+
+        // NAVEGAÇÃO ENTRE TELAS
+        const loginLink = document.getElementById('ir-para-cadastro');
+        const cadastroLink = document.getElementById('ir-para-login'); 
         const paginaLogin = document.getElementById('container-login');
         const paginaCadastro = document.getElementById('container-cadastro');
 
-        login.addEventListener('click', function(evento) {
+        loginLink.addEventListener('click', function(evento) {
             evento.preventDefault();
-
             paginaLogin.classList.add('hidden');
             paginaCadastro.classList.remove('hidden');
         });
 
-        cadastro.addEventListener('click', function(evento) {
+        cadastroLink.addEventListener('click', function(evento) {
             evento.preventDefault();
-
             paginaCadastro.classList.add('hidden');
             paginaLogin.classList.remove('hidden');
         });
 
-        // Limpeza de erros em tempo real
-        document.getElementById('email-login').addEventListener('input', function() {
-            this.classList.remove('error');
+        // LIMPEZA DE ERROS EM TEMPO REAL
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error');
+            });
         });
 
-        document.getElementById('senha-login').addEventListener('input', function() {
-            this.classList.remove('error');
-        });
-
-        // Lógica de Validação
+        // VALIDAÇÃO DE LOGIN
         function validarCamposLogin() {
             const erros = document.querySelectorAll('.error');
             erros.forEach(el => el.classList.remove('error'));
 
             const inputEmail = document.getElementById('email-login');
             const inputSenha = document.getElementById('senha-login');
-
             const emailValue = inputEmail.value.trim();
             const senhaValue = inputSenha.value.trim();
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             let formularioValido = true;
 
-            // Validação de Email
-            if (emailValue == "") {
+            if (emailValue === "") {
                 exibirErro(inputEmail, "O campo de e-mail não pode ser vazio.");
                 formularioValido = false;
             } else if (!regex.test(emailValue)) {
@@ -125,7 +126,6 @@
                 formularioValido = false;
             }
 
-            // Validação de Senha
             if (senhaValue.length < 8) {
                 exibirErro(inputSenha, "A senha precisa ter no mínimo 8 caracteres.");
                 formularioValido = false;
@@ -136,7 +136,53 @@
             }
         }
 
-        // Função auxiliar de Erro
+        // VALIDAÇÃO DE CADASTRO
+        function validarCamposCadastro() {
+            const erros = document.querySelectorAll('.error');
+            erros.forEach(el => el.classList.remove('error'));
+            
+            const inputNome = document.getElementById('nome-cadastro');
+            const inputEmail = document.getElementById('email-cadastro');
+            const inputSenha = document.getElementById('senha-cadastro');
+            const inputConfirmaSenha = document.getElementById('confirmaSenha');
+
+            const nomeValue = inputNome.value.trim();
+            const emailValue = inputEmail.value.trim();
+            const senhaValue = inputSenha.value.trim();
+            const confirmaSenhaValue = inputConfirmaSenha.value.trim();
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            let formularioValido = true;
+
+            if (nomeValue === "") {
+                exibirErro(inputNome, "O campo nome não pode ser vazio");
+                formularioValido = false;
+            } 
+
+            if (emailValue === "") {
+                exibirErro(inputEmail, "O campo de e-mail não pode ser vazio.");
+                formularioValido = false;
+            } else if (!regex.test(emailValue)) {
+                exibirErro(inputEmail, "O e-mail tem que ser válido.");
+                formularioValido = false;
+            }
+
+            if (senhaValue.length < 8) {
+                exibirErro(inputSenha, "A senha precisa ter no mínimo 8 caracteres.");
+                formularioValido = false;
+            }
+
+            if (senhaValue !== confirmaSenhaValue) {
+                exibirErro(inputConfirmaSenha, "As senhas estão diferentes!");
+                formularioValido = false;
+            }
+
+            if (formularioValido) {
+                alert("Cadastro realizado com sucesso!");
+            }
+        }
+
+        // FUNÇÃO AUXILIAR DE ERRO
         function exibirErro(input, mensagem) {
             input.classList.add("error");
             const spanInput = input.nextElementSibling;
