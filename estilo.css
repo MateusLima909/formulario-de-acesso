@@ -27,10 +27,16 @@ a {
 /************************************/
 /*--- 2. ESTRUTURA DO FORMULÁRIO ---*/
 /************************************/
+#container-login, #container-cadastro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 form {
     width: 100%;
     max-width: 400px;
-    padding: 30px;
+    padding: 40px 50px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -39,7 +45,7 @@ form {
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     margin-bottom: 15px;
     font-weight: bold;
 }
@@ -49,7 +55,7 @@ form {
 /************************************/
 input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
     outline: none;
@@ -60,7 +66,6 @@ button {
     padding: 10px;
     background-color: #0060c7;
     color: white;
-    font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -102,7 +107,7 @@ input.error + .msg-erro {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 button:hover {
