@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="estilo.css">
     <title>Acesso ao setor</title>
+    <link rel="icon" href="assets/id-card.png" type="image/png">
 </head>
-<body>
-    <div id="container-login">
+<body class="layout-login">
+
+    <div class="side-content">
+        <h1 id="texto-lateral">Flow<span>Auth</span></h1>
+        <p id="subtexto-lateral">Gestão de Acesso Inteligente</p>
+    </div>
+
+    <div id="container-login" class="form-container">
         <form id="formLogin">
             <h2>Login</h2>
             <hr class="hr-gradiente">
             
             <div class="input-group"> 
                 <label for="email-login">E-mail</label>
-                <input type="email" id="email-login" name="email-login" placeholder="Digite seu E-mail...">
+                <div class="input-wrapper">
+                    <i data-feather="mail" class="icon-field"></i>
+                    <input type="email" id="email-login" name="email-login" placeholder="Digite seu E-mail...">
+                </div>
                 <span class="msg-erro"></span>
             </div>
             
             <div class="input-group"> 
                 <label for="senha-login">Senha</label>
-                <input type="password" id="senha-login" name="senha-login" placeholder="Digite sua senha..." required>
+                <div class="password-wrapper">
+                    <i data-feather="lock" class="icon-field"></i>
+                    <input type="password" class="input-senha" id="senha-login" name="senha-login" placeholder="Digite a senha...">
+                    <button type="button" class="btn-ver-senha" onclick="toggleSenha(this)">
+                        <i data-feather="eye"></i>
+                    </button>
+                </div>
                 <span class="msg-erro"></span>
             </div>
             
@@ -29,34 +46,52 @@
         </form> 
     </div>
 
-    <div id="container-cadastro" class="hidden">
+    <div id="container-cadastro" class="form-container hidden">
         <form id="formCadastro">
             <h2>Cadastro</h2>
             <hr class="hr-gradiente">
             
             <div class="input-group"> 
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome-cadastro" name="nome-cadastro" 
-                       oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" 
-                       placeholder="Digite seu nome completo..">
+                <label for="nome-cadastro">Nome Completo</label>
+                <div class="input-wrapper">
+                    <i data-feather="user" class="icon-field"></i>
+                    <input type="text" id="nome-cadastro" name="nome-cadastro" 
+                           oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" 
+                           placeholder="Seu nome completo..">
+                </div>
                 <span class="msg-erro"></span>
             </div>
 
             <div class="input-group"> 
                 <label for="email-cadastro">E-mail</label>
-                <input type="email" id="email-cadastro" name="email-cadastro" placeholder="Digite seu E-mail...">
+                <div class="input-wrapper">
+                    <i data-feather="mail" class="icon-field"></i>
+                    <input type="email" id="email-cadastro" name="email-cadastro" placeholder="Seu melhor E-mail...">
+                </div>
                 <span class="msg-erro"></span>
             </div>
             
             <div class="input-group"> 
                 <label for="senha-cadastro">Senha</label>
-                <input type="password" id="senha-cadastro" name="senha-cadastro" placeholder="Digite sua senha..." required>
+                <div class="password-wrapper">
+                    <i data-feather="lock" class="icon-field"></i>
+                    <input type="password" class="input-senha" id="senha-cadastro" name="senha-cadastro" placeholder="Crie uma senha...">
+                    <button type="button" class="btn-ver-senha" onclick="toggleSenha(this)">
+                        <i data-feather="eye"></i>
+                    </button>
+                </div>
                 <span class="msg-erro"></span>
             </div>
 
             <div class="input-group"> 
                 <label for="confirmaSenha">Confirmar Senha</label>
-                <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Digite sua senha novamente..." required>
+                <div class="password-wrapper">
+                    <i data-feather="shield" class="icon-field"></i>
+                    <input type="password" class="input-senha" id="confirmaSenha" name="confirmaSenha" placeholder="Repita a senha...">
+                    <button type="button" class="btn-ver-senha" onclick="toggleSenha(this)">
+                        <i data-feather="eye"></i>
+                    </button>
+                </div>
                 <span class="msg-erro"></span>
             </div>
             
@@ -66,10 +101,11 @@
     </div>
 
     <script>
+        feather.replace();
+
         const formLogin = document.getElementById('formLogin');
         const formCadastro = document.getElementById('formCadastro');
 
-        // EVENTOS DE ENVIO
         formLogin.addEventListener('submit', function(evento) {
             evento.preventDefault();
             validarCamposLogin();
@@ -80,32 +116,26 @@
             validarCamposCadastro();
         });
 
-        // NAVEGAÇÃO ENTRE TELAS
         const loginLink = document.getElementById('ir-para-cadastro');
-        const cadastroLink = document.getElementById('ir-para-login'); 
-        const paginaLogin = document.getElementById('container-login');
-        const paginaCadastro = document.getElementById('container-cadastro');
+        const cadastroLink = document.getElementById('ir-para-login');
+        const subtexto = document.getElementById('subtexto-lateral');
 
-        loginLink.addEventListener('click', function(evento) {
-            evento.preventDefault();
-            paginaLogin.classList.add('hidden');
-            paginaCadastro.classList.remove('hidden');
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.className = 'layout-cadastro';
+            subtexto.textContent = "Crie sua conta agora";
+            document.getElementById('container-login').classList.add('hidden');
+            document.getElementById('container-cadastro').classList.remove('hidden');
         });
 
-        cadastroLink.addEventListener('click', function(evento) {
-            evento.preventDefault();
-            paginaCadastro.classList.add('hidden');
-            paginaLogin.classList.remove('hidden');
+        cadastroLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.className = 'layout-login';
+            subtexto.textContent = "Gestão de Acesso Inteligente";
+            document.getElementById('container-cadastro').classList.add('hidden');
+            document.getElementById('container-login').classList.remove('hidden');
         });
 
-        // LIMPEZA DE ERROS EM TEMPO REAL
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', function() {
-                this.classList.remove('error');
-            });
-        });
-
-        // VALIDAÇÃO DE LOGIN
         function validarCamposLogin() {
             const erros = document.querySelectorAll('.error');
             erros.forEach(el => el.classList.remove('error'));
@@ -136,8 +166,7 @@
             }
         }
 
-        // VALIDAÇÃO DE CADASTRO
-        function validarCamposCadastro() {
+         function validarCamposCadastro() {
             const erros = document.querySelectorAll('.error');
             erros.forEach(el => el.classList.remove('error'));
             
@@ -182,11 +211,26 @@
             }
         }
 
+        function toggleSenha(botao) {
+            const input = botao.previousElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                botao.innerHTML = '<i data-feather="eye-off"></i>';
+            } else {
+                input.type = 'password';
+                botao.innerHTML = '<i data-feather="eye"></i>';
+            }
+            feather.replace();
+        }
+
         // FUNÇÃO AUXILIAR DE ERRO
         function exibirErro(input, mensagem) {
             input.classList.add("error");
-            const spanInput = input.nextElementSibling;
-            spanInput.textContent = mensagem;
+
+            const container = input.closest('.input-group');
+            const spanErro = container.querySelector('.msg-erro');
+
+            spanErro.textContent = mensagem;
         }
     </script>
 </body>

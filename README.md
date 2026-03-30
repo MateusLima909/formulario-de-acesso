@@ -1,42 +1,47 @@
-# 🛡️ FlowAuth - Modern Auth Interface
+# 🛡️ FlowAuth - High-Fidelity Auth Interface
 
-> **Uma interface de autenticação dinâmica de alta fidelidade, desenvolvida para proporcionar uma transição fluida entre estados de Login e Cadastro sem interrupções de carregamento.**
+> **Uma interface de autenticação dinâmica de alta fidelidade, desenvolvida para proporcionar uma transição fluida entre estados de Login e Cadastro com foco em Motion Design e Glassmorphism.**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Em_Evolução-brightgreen)
+![Feather Icons](https://img.shields.io/badge/Icons-Feather-blue)
+![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
 
 ## 📖 Sobre o Projeto
 
-O **FlowAuth** é um projeto focado em elevar a Experiência do Usuário (UX) no principal ponto de contato de qualquer aplicação: a autenticação. 
+O **FlowAuth** é uma interface de autenticação moderna que rompe com o padrão centralizado comum. O projeto utiliza um layout **Split-Screen Dinâmico**, onde o formulário viaja horizontalmente pela tela conforme a interação do usuário, criando um fluxo narrativo entre as ações de Login e Cadastro.
 
-Com um forte foco em **Micro-interações** e **Integridade de Dados no Front-end**, a interface garante navegação orgânica, tratamento de erros inteligente e validação rigorosa antes de qualquer envio de dados para o servidor.
+Com estética baseada em **Glassmorphism** e **Mesh Gradients**, o projeto foca na harmonia visual e em micro-interações de baixo impacto cognitivo.
 
-### 🚀 Novas Funcionalidades e Melhorias
+---
 
-* **Transições Suaves (UX):** Implementação de animações baseadas em `opacity` e `transform` (Y-axis + Scale) para uma alternância de telas orgânica e sem recarregamentos.
-* **Sanitização Dinâmica:** Filtro em tempo real no campo de nome utilizando Regex para impedir a entrada de caracteres numéricos ou especiais diretamente no evento `oninput`.
-* **Validação Avançada:** Sistema de checagem dupla para senhas (igualdade entre senha e confirmação) e validação estrita de formato de e-mail.
-* **Resiliência CSS:** Uso de especificidade controlada (incluindo `!important` na classe `.hidden`) para garantir que o layout nunca quebre, independentemente da resolução da tela.
-* **Clean DOM:** Gerenciamento centralizado de erros que limpa o estado de alerta instantaneamente assim que o usuário volta a digitar no campo corrigido.
+## 🚀 Funcionalidades Implementadas
+
+* **Split-Screen Motion:** Transição lateral fluida controlada via classes dinâmicas no `body`, movendo o formulário e o conteúdo de apoio de forma síncrona.
+* **Glassmorphism UI:** Interface translúcida utilizando `backdrop-filter: blur` e bordas suaves, otimizada para se destacar sobre fundos complexos.
+* **Iconografia Minimalista:** Implementação de **Feather Icons** com traços finos (`stroke-width: 1.5px`) para um visual *clean* e profissional.
+* **Toggle Visibility (Ver Senha):** Funcionalidade de alternância de visibilidade de senha com troca dinâmica de estados e ícones.
+* **Sanitização Dinâmica:** Filtro em tempo real no campo de nome (Regex) e validação rigorosa de igualdade de senhas e formato de e-mail.
+* **Clean DOM & Erros:** Gerenciamento centralizado de erros que limpa o estado de alerta instantaneamente ao detectar nova entrada do usuário.
 
 ---
 
 ## 📸 Screenshots
 
-|<img src="assets/print-login.png" width="400" alt="Tela de Login Animada">|<img src="assets/print-cadastro.png" width="400" alt="Validação de Cadastro">|
+|<img src="assets/print-login.png" width="400" alt="Login na Direita">|<img src="assets/print-cadastro.png" width="400" alt="Cadastro na Esquerda">|
 |:---:|:---:|
-|**Interface de Login**|**Formulário de Cadastro**|
+|**Login (Lado Direito)**|**Cadastro (Lado Esquerdo)**|
 
 ---
 
-## 📐 Arquitetura da Interface
+## 📐 Arquitetura e Design
 
-O desenvolvimento do FlowAuth utilizou técnicas avançadas de estruturação front-end para garantir isolamento de escopo e fluidez visual:
+O FlowAuth foi construído seguindo princípios modernos de design de interface:
 
-* **Animações de Entrada (Motion Design):** A interface utiliza a técnica de Motion Design para guiar o olhar do usuário. Sempre que um formulário é ativado, ele executa um efeito de *fade-in* com um leve deslizamento vertical de 20px, criando uma percepção de profundidade e modernidade.
-* **Lógica de Identidade (Isolamento de Escopo):** Diferente de formulários simples, o FlowAuth trata cada contexto (Login vs. Cadastro) com identificadores únicos (IDs). Isso permite que os scripts de validação operem de forma totalmente isolada e precisa, evitando vazamento ou conflitos de dados no navegador.
+* **Assimetria Equilibrada:** O uso do espaço vazio é preenchido por um título flutuante em baixa opacidade (**FlowAuth**), garantindo que a interface não pareça vazia enquanto o formulário ocupa as laterais.
+* **Hierarquia Tipográfica:** Subtextos com `letter-spacing` aumentado e baixa opacidade para criar uma estética *premium* sem competir com as informações principais.
+* **Resiliência Visual:** Sistema de cores baseado em variáveis e RGBA, garantindo que o efeito de vidro funcione sobre qualquer variação do gradiente de fundo.
 
 ---
 
@@ -44,38 +49,40 @@ O desenvolvimento do FlowAuth utilizou técnicas avançadas de estruturação fr
 
 | Tecnologia | Aplicação no Projeto |
 | :--- | :--- |
-| **HTML5** | Estruturação semântica com IDs únicos para múltiplos formulários. |
-| **CSS3** | Flexbox, `@keyframes` para gradientes infinitos e transições suaves. |
-| **JavaScript (ES6+)** | Manipulação do DOM, Regex para sanitização e lógica de validação dupla. |
+| **HTML5** | Estruturação semântica e wrappers de isolamento para ícones e campos. |
+| **CSS3** | Mesh Gradients, Flexbox dinâmico, Glassmorphism e Motion Design. |
+| **JavaScript** | Lógica de navegação de estados, Toggle de visibilidade e validações ES6+. |
+| **Feather Icons** | Biblioteca de ícones vetoriais focada em traços finos e minimalismo. |
 
 ---
 
 ## 📂 Como Executar o Projeto
 
-O projeto não possui dependências externas complexas e pode ser rodado localmente com facilidade:
+O projeto é 100% front-end e pode ser executado instantaneamente:
 
-1. Clone este repositório para a sua máquina local.
-2. Certifique-se de manter os arquivos `index.html` e `estilo.css` (além dos scripts, se separados) no mesmo diretório.
-3. Abra o arquivo `index.html` em qualquer navegador web moderno.
+1. Clone este repositório.
+2. Mantenha o `index.html` e o `estilo.css` no mesmo diretório.
+3. Abra o arquivo `index.html` no navegador.
 
-> **💡 Dica de Desenvolvedor:** Utilize a extensão **Live Server** (no VS Code) para abrir o projeto. Isso garante a visualização das animações de transição e micro-interações com a melhor taxa de quadros (FPS) possível.
+> **💡 Dica de Dev:** Recomenda-se o uso de navegadores baseados em Chromium para a melhor renderização do efeito de `backdrop-filter` (Blur).
 
 ---
 
 ## 📝 Roadmap de Evolução
 
-O projeto continua sendo aprimorado. Confira o status das implementações:
-
-- [x] Transições suaves entre telas (Login/Cadastro).
-- [x] Validação rigorosa e checagem de igualdade de senhas.
-- [ ] **Visibilidade:** Implementar funcionalidade de "Ver Senha" (*Toggle Visibility*).
+- [x] Transições suaves e Split-Screen.
+- [x] Ícones minimalistas e refinamento de cores.
+- [x] Funcionalidade de "Ver Senha" (*Toggle Visibility*).
 - [ ] **Backend:** Integração com serviço de autenticação via API REST.
+- [ ] **Social Auth:** Botões de login via OAuth (Google/GitHub).
 
 ---
 
 ## 🤝 Contribuição
 
 Feedbacks sobre usabilidade, acessibilidade e performance das animações são sempre bem-vindos!
+
+---
 
 ## 📝 Autor
 
