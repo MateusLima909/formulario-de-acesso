@@ -1,86 +1,91 @@
 # 🛡️ FlowAuth - High-Fidelity Auth Interface
 
-> **Uma interface de autenticação dinâmica de alta fidelidade, desenvolvida para proporcionar uma transição fluida entre estados de Login e Cadastro com foco em Motion Design e Glassmorphism.**
+> **Uma interface de autenticação dinâmica de alta fidelidade, desenvolvida para proporcionar uma transição fluida entre estados de Login e Cadastro com foco em Motion Design, Glassmorphism e persistência de tema.**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Feather Icons](https://img.shields.io/badge/Icons-Feather-blue)
-![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
+![LocalStorage](https://img.shields.io/badge/Storage-Local_Persistence-orange)
 
 ## 📖 Sobre o Projeto
 
-O **FlowAuth** é uma interface de autenticação moderna que rompe com o padrão centralizado comum. O projeto utiliza um layout **Split-Screen Dinâmico**, onde o formulário viaja horizontalmente pela tela conforme a interação do usuário, criando um fluxo narrativo entre as ações de Login e Cadastro.
+O **FlowAuth** é uma interface de autenticação moderna que rompe com o padrão centralizado comum. O projeto utiliza um layout **Split-Screen Dinâmico**, onde o formulário viaja horizontalmente pela tela conforme a interação do usuário. 
 
-Com estética baseada em **Glassmorphism** e **Mesh Gradients**, o projeto foca na harmonia visual e em micro-interações de baixo impacto cognitivo.
+Nesta versão atualizada, o projeto implementa um sistema de **Dual Theme (Light/Dark Mode)** com persistência de dados, garantindo que a preferência do usuário seja respeitada em futuras sessões.
 
 ---
 
 ## 🚀 Funcionalidades Implementadas
 
-* **Split-Screen Motion:** Transição lateral fluida controlada via classes dinâmicas no `body`, movendo o formulário e o conteúdo de apoio de forma síncrona.
-* **Glassmorphism UI:** Interface translúcida utilizando `backdrop-filter: blur` e bordas suaves, otimizada para se destacar sobre fundos complexos.
-* **Iconografia Minimalista:** Implementação de **Feather Icons** com traços finos (`stroke-width: 1.5px`) para um visual *clean* e profissional.
-* **Toggle Visibility (Ver Senha):** Funcionalidade de alternância de visibilidade de senha com troca dinâmica de estados e ícones.
-* **Sanitização Dinâmica:** Filtro em tempo real no campo de nome (Regex) e validação rigorosa de igualdade de senhas e formato de e-mail.
-* **Clean DOM & Erros:** Gerenciamento centralizado de erros que limpa o estado de alerta instantaneamente ao detectar nova entrada do usuário.
+* **Dual Theme Engine:** Sistema de troca de temas (Claro/Escuro) utilizando variáveis CSS (`:root`) para uma transição de cores suave e performática.
+* **Theme Persistence:** Integração com `localStorage` para salvar a preferência de tema do usuário no navegador.
+* **Modular Code Architecture:** Refatoração completa para separação de responsabilidades (HTML, CSS e JS em arquivos e pastas distintas), facilitando a manutenção e escalabilidade.
+* **Split-Screen Motion:** Transição lateral fluida controlada via `classList` no JavaScript, evitando conflitos de estado entre o layout e o tema.
+* **Glassmorphism UI:** Interface translúcida utilizando `backdrop-filter: blur`, otimizada tanto para paletas claras quanto para tons escuros (Cyberpunk Blue).
+* **Animated Theme Switcher:** Toggle customizado com animações de astros (sol, lua e estrelas) para uma experiência de usuário lúdica.
+* **Toggle Visibility (Ver Senha):** Alternância de visibilidade com troca dinâmica de ícones Feather.
 
 ---
 
 ## 📸 Screenshots
 
-|<img src="assets/print-login.png" width="400" alt="Login na Direita">|<img src="assets/print-cadastro.png" width="400" alt="Cadastro na Esquerda">|
+|<img src="assets/print-login.png" width="400" alt="Login Light Mode">|<img src="assets/print-login-dark.png" width="400" alt="Login Dark Mode">|
 |:---:|:---:|
-|**Login (Lado Direito)**|**Cadastro (Lado Esquerdo)**|
+|**Interface - Light Mode**|**Interface - Dark Mode**|
 
 ---
 
 ## 📐 Arquitetura e Design
 
-O FlowAuth foi construído seguindo princípios modernos de design de interface:
+O FlowAuth utiliza conceitos avançados de estruturação Front-end:
 
-* **Assimetria Equilibrada:** O uso do espaço vazio é preenchido por um título flutuante em baixa opacidade (**FlowAuth**), garantindo que a interface não pareça vazia enquanto o formulário ocupa as laterais.
-* **Hierarquia Tipográfica:** Subtextos com `letter-spacing` aumentado e baixa opacidade para criar uma estética *premium* sem competir com as informações principais.
-* **Resiliência Visual:** Sistema de cores baseado em variáveis e RGBA, garantindo que o efeito de vidro funcione sobre qualquer variação do gradiente de fundo.
+* **Variáveis CSS Dinâmicas:** Gerenciamento de cores através de tokens CSS, permitindo que o tema escuro seja ativado apenas alternando uma classe no `body`.
+* **Motion Design:** Uso de curvas `cubic-bezier` para garantir que o movimento do formulário e do texto lateral pareça natural e orgânico.
+* **Sanitização de Inputs:** Lógica de validação em tempo real e tratamento de erros via DOM traversal (`closest` e `querySelector`).
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Stack Tecnológica e Estrutura
 
 | Tecnologia | Aplicação no Projeto |
 | :--- | :--- |
-| **HTML5** | Estruturação semântica e wrappers de isolamento para ícones e campos. |
-| **CSS3** | Mesh Gradients, Flexbox dinâmico, Glassmorphism e Motion Design. |
-| **JavaScript** | Lógica de navegação de estados, Toggle de visibilidade e validações ES6+. |
-| **Feather Icons** | Biblioteca de ícones vetoriais focada em traços finos e minimalismo. |
+| **HTML5** | Estruturação semântica e organização modular. |
+| **CSS3** | Variáveis nativas, Glassmorphism e animações complexas. |
+| **JavaScript** | Manipulação do DOM, persistência em LocalStorage e lógica de estados. |
+| **Feather Icons** | Iconografia vetorial ultra-fina para um design minimalista. |
+
+**Estrutura de Pastas:**
+- `/assets`: Recursos visuais e favicons.
+- `/script`: Lógica JavaScript modularizada.
+- `/static`: Estilização CSS centralizada.
+- `index.html`: Ponto de entrada do sistema.
 
 ---
 
 ## 📂 Como Executar o Projeto
 
-O projeto é 100% front-end e pode ser executado instantaneamente:
+Graças à nova arquitetura modular, basta clonar a estrutura de pastas completa:
 
 1. Clone este repositório.
-2. Mantenha o `index.html` e o `estilo.css` no mesmo diretório.
-3. Abra o arquivo `index.html` no navegador.
-
-> **💡 Dica de Dev:** Recomenda-se o uso de navegadores baseados em Chromium para a melhor renderização do efeito de `backdrop-filter` (Blur).
+2. Certifique-se de que as pastas `script`, `static` e `assets` estão no mesmo nível do `index.html`.
+3. Abra o arquivo `index.html` no seu navegador de preferência.
 
 ---
 
 ## 📝 Roadmap de Evolução
 
-- [x] Transições suaves e Split-Screen.
-- [x] Ícones minimalistas e refinamento de cores.
-- [x] Funcionalidade de "Ver Senha" (*Toggle Visibility*).
-- [ ] **Backend:** Integração com serviço de autenticação via API REST.
+- [x] Separação de arquivos (HTML/CSS/JS).
+- [x] Implementação de Dark Mode com persistência (`localStorage`).
+- [x] Toggle de visibilidade de senha.
+- [ ] **Backend:** Integração com serviço de autenticação via API REST (Node.js/Spring).
 - [ ] **Social Auth:** Botões de login via OAuth (Google/GitHub).
 
 ---
 
 ## 🤝 Contribuição
 
-Feedbacks sobre usabilidade, acessibilidade e performance das animações são sempre bem-vindos!
+Feedbacks sobre a fluidez das animações e a legibilidade do código são sempre bem-vindos!
 
 ---
 

@@ -10,11 +10,10 @@ const subtexto = document.getElementById('subtexto-lateral');
 const themeCheckbox = document.getElementById('checkbox');
 const body = document.body;
 
-// 3. NAVEGAÇÃO ENTRE TELAS (CORRIGIDO)
+// 3. NAVEGAÇÃO ENTRE TELAS
 loginLink.addEventListener('click', function(e) {
     e.preventDefault();
-    
-    // Usamos classList para não mexer na classe de tema
+
     body.classList.remove('layout-login');
     body.classList.add('layout-cadastro');
     
@@ -38,14 +37,13 @@ cadastroLink.addEventListener('click', function(e) {
 const applyTheme = (theme) => {
     if (theme === 'dark') {
         body.classList.add('dark-mode');
-        if(themeCheckbox) themeCheckbox.checked = false; // Ajuste conforme seu HTML
+        if(themeCheckbox) themeCheckbox.checked = false;
     } else {
         body.classList.remove('dark-mode');
         if(themeCheckbox) themeCheckbox.checked = true;
     }
 };
 
-// Verifica preferências salvas ou do sistema
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
