@@ -2,11 +2,13 @@
 
 > **Uma interface de autenticação dinâmica de alta fidelidade, desenvolvida para proporcionar uma transição fluida entre estados de Login e Cadastro com foco em Motion Design, Glassmorphism e persistência de tema.**
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![Feather Icons](https://img.shields.io/badge/Icons-Feather-blue)
 ![LocalStorage](https://img.shields.io/badge/Storage-Local_Persistence-orange)
+
+**Link para o Formulário de Acesso:** [Modo Live do Formulário](https://mateuslima909.github.io/formulario-de-acesso/)
 
 ## 📖 Sobre o Projeto
 
